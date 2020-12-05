@@ -10,12 +10,10 @@
 
 namespace Guanguans\YiiEvent\Tests;
 
-use Guanguans\YiiEvent\PackageSkeleton;
-
-class PackageSkeletonTest extends TestCase
+class EventTest extends TestCase
 {
     public function testTest()
     {
-        $this->assertTrue(PackageSkeleton::test());
+        $this->assertTrue(true);
     }
 }

@@ -1,11 +1,11 @@
 {
     "name": "guanguans/yii-event",
-    "description": "A PHP package template repository. - 一个PHP软件包模板存储库。",
+    "description": "Easily use events in yii. - 在 yii 中轻松容易的使用事件。",
     "keywords": [
-        "package",
-        "template",
-        "PHP",
-        "skeleton"
+        "yii",
+        "yii2",
+        "event",
+        "yii-event"
     ],
     "homepage": "https://github.com/guanguans/yii-event",
     "support": {
@@ -25,7 +25,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=7.2"
+        "yiisoft/yii2": "^2.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.16",
@@ -37,7 +37,10 @@
     "autoload": {
         "psr-4": {
             "Guanguans\\YiiEvent\\": "src"
-        }
+        },
+        "files": [
+
+        ]
     },
     "autoload-dev": {
         "psr-4": {

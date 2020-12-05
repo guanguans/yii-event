@@ -10,10 +10,9 @@
 
 namespace Guanguans\YiiEvent;
 
-class PackageSkeleton
+use yii\base\Event;
+
+interface ListenerInterface
 {
-    public static function test()
-    {
-        return true;
-    }
+    public static function handle(Event $event);
 }

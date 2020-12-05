@@ -11,4 +11,4 @@ psalm.xml
 vendor/
 tests.php
 .DS_Store
-.history/
+cghooks.lock
