@@ -42,10 +42,53 @@ $ composer require guanguans/yii-event -vvv
 
 ## Usage
 
+### Create `app\events\ExampleEvent.php` event
+
 ``` php
-Yii::$app->event->dispatch(new ExampleEvent());
+namespace app\events;
+
+use yii\base\Event;
+
+class ExampleEvent extends Event
+{
+    public $name = 'example';
+
+    public $array;
+}
+```
+
+### Create `app\listeners\ExampleListener.php` listener
+
+``` php
+namespace app\listeners;
+
+use Guanguans\YiiEvent\ListenerInterface;
+use yii\base\Event;
+
+class ExampleListener implements ListenerInterface
+{
+    public static function handle(Event $event)
+    {
+        // to do something.
+        var_export($event->array);
+    }
+}
+```
+
+### Dispatch event
+
+``` php
+Yii::$app->event->dispatch(new ExampleEvent(['array' => ['array']]));
 // or
-event(new ExampleEvent());
+event(new ExampleEvent(['array' => ['array']]));
+```
+
+### Output result
+
+``` php
+array (
+  0 => 'array',
+)
 ```
 
 ## Testing

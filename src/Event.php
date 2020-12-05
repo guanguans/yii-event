@@ -45,7 +45,7 @@ class Event extends Component
         $listeners = is_object($listeners) ? [$listeners] : (array) $listeners;
 
         $listeners = array_unique(array_merge(
-            $this->listen[get_class($event)] ?? [],
+            isset($this->listen[get_class($event)]) ? $this->listen[get_class($event)] : [],
             $listeners
         ));
 
