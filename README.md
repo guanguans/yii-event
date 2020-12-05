@@ -2,6 +2,8 @@
 
 > Easily use events in yii. - 在 yii 中轻松容易的使用事件。
 
+<p align="center"><img src="./docs/usage.png"></p>
+
 ![Tests](https://github.com/guanguans/yii-event/workflows/Tests/badge.svg)
 ![Check & fix styling](https://github.com/guanguans/yii-event/workflows/Check%20&%20fix%20styling/badge.svg)
 [![codecov](https://codecov.io/gh/guanguans/yii-event/branch/main/graph/badge.svg?token=URGFAWS6S4)](https://codecov.io/gh/guanguans/yii-event)
