@@ -10,6 +10,7 @@
 
 namespace Guanguans\YiiEvent\Tests;
 
+use Guanguans\YiiEvent\ListenerInterface;
 use Guanguans\YiiEvent\Tests\Stub\ExampleEvent;
 use Yii;
 use yii\web\Application;
@@ -25,7 +26,16 @@ class EventTest extends TestCase
     {
         $mockArr = ['array'];
         Yii::$app->event->setListen($mockArr);
+
         $this->assertEquals($mockArr, Yii::$app->event->getListen());
+    }
+
+    public function testDispatchException()
+    {
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage(sprintf('The %s muse be implement %s.', self::class, ListenerInterface::class));
+
+        Yii::$app->event->dispatch(new ExampleEvent(), self::class);
     }
 
     public function testDispatch()
@@ -33,6 +43,9 @@ class EventTest extends TestCase
         $mockArr = ['array'];
 
         $this->assertNull(Yii::$app->event->dispatch(new ExampleEvent(['data' => $mockArr])));
+        $this->assertNull(Yii::$app->event->dispatch(new ExampleEvent(['data' => $mockArr]), function () {
+            return 'To do something.';
+        }));
     }
 
     public function testDispatchOutputString()

@@ -11,6 +11,7 @@
 namespace Guanguans\YiiEvent;
 
 use Closure;
+use Exception;
 use Yii;
 use yii\base\Component;
 
@@ -47,6 +48,7 @@ class Event extends Component
      *
      * @param array|closure|object|string|null $listeners
      *
+     * @throws \Exception
      * @throws \yii\base\InvalidConfigException
      */
     public function dispatch(\yii\base\Event $event, $listeners = null)
@@ -59,9 +61,17 @@ class Event extends Component
         ));
 
         foreach ($listeners as $listener) {
-            is_string($listener) && $listener = Yii::createObject($listener);
-            $listener instanceof Closure && $this->on($event->name, $listener);
-            $listener instanceof ListenerInterface && $this->on($event->name, [$listener, 'handle']);
+            if ($listener instanceof Closure) {
+                $this->on($event->name, $listener);
+                continue;
+            }
+
+            $listener = Yii::createObject($listener);
+            if (! $listener instanceof ListenerInterface) {
+                throw new Exception(sprintf('The %s muse be implement %s.', get_class($listener), ListenerInterface::class));
+            }
+
+            $this->on($event->name, [$listener, 'handle']);
         }
 
         $this->trigger($event->name, $event);

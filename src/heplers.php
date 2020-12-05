@@ -16,6 +16,7 @@ if (! function_exists('event')) {
      *
      * @param array|closure|object|string|null $listeners
      *
+     * @throws \Exception
      * @throws \yii\base\InvalidConfigException
      */
     function event(Event $event, $listeners = null)
