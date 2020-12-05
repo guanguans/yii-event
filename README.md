@@ -4,8 +4,8 @@
 
 <p align="center"><img src="./docs/usage.png"></p>
 
-![Tests](https://github.com/guanguans/yii-event/workflows/Tests/badge.svg)
-![Check & fix styling](https://github.com/guanguans/yii-event/workflows/Check%20&%20fix%20styling/badge.svg)
+[![Tests](https://github.com/guanguans/yii-event/workflows/Tests/badge.svg)](https://github.com/guanguans/yii-event/actions)
+[![Check & fix styling](https://github.com/guanguans/yii-event/workflows/Check%20&%20fix%20styling/badge.svg)](https://github.com/guanguans/yii-event/actions)
 [![codecov](https://codecov.io/gh/guanguans/yii-event/branch/main/graph/badge.svg?token=URGFAWS6S4)](https://codecov.io/gh/guanguans/yii-event)
 [![Latest Stable Version](https://poser.pugx.org/guanguans/yii-event/v)](//packagist.org/packages/guanguans/yii-event)
 [![Total Downloads](https://poser.pugx.org/guanguans/yii-event/downloads)](//packagist.org/packages/guanguans/yii-event)
@@ -24,27 +24,25 @@ $ composer require guanguans/yii-event -vvv
 ## Configuration
 
 ``` php
-
 ...
-
 'components' => [
+    ...
     'event' => [
-        'class' => Guanguans\YiiEvent\Event::className(),
+        'class' => \Guanguans\YiiEvent\Event::className(),
         'listen' => [
             \app\events\ExampleEvent::className() => [
                 \app\listeners\ExampleListener::class,
             ],
         ],
     ],
+    ...
 ],
-
 ...
-
 ```
 
 ## Usage
 
-### Create `app\events\ExampleEvent.php` event
+### Create `app\events\ExampleEvent.php`
 
 ``` php
 namespace app\events;
@@ -59,7 +57,7 @@ class ExampleEvent extends Event
 }
 ```
 
-### Create `app\listeners\ExampleListener.php` listener
+### Create `app\listeners\ExampleListener.php`
 
 ``` php
 namespace app\listeners;

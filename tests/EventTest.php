@@ -59,5 +59,6 @@ class EventTest extends TestCase
         $this->expectOutputString(var_export($mockArr, true));
 
         Yii::$app->event->dispatch(new ExampleEvent(['array' => $mockArr]));
+        // event(new ExampleEvent(['array' => $mockArr]));
     }
 }
