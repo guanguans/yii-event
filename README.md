@@ -1,6 +1,6 @@
-# package-skeleton
+# yii-event
 
-> A PHP package template repository. - 一个 PHP 软件包模板存储库。
+> Easily use events in yii. - 在 yii 中轻松容易的使用事件。
 
 ![Tests](https://github.com/guanguans/yii-event/workflows/Tests/badge.svg)
 ![Check & fix styling](https://github.com/guanguans/yii-event/workflows/Check%20&%20fix%20styling/badge.svg)
@@ -11,7 +11,7 @@
 
 ## Requirement
 
-* PHP >= 7.2
+* Yii > 2.0
 
 ## Installation
 
@@ -19,13 +19,34 @@
 $ composer require guanguans/yii-event -vvv
 ```
 
+## Configuration
+
+``` php
+
+...
+
+'components' => [
+    'event' => [
+        'class' => Guanguans\YiiEvent\Event::className(),
+        'listen' => [
+            \app\events\ExampleEvent::className() => [
+                \app\listeners\ExampleListener::class,
+            ],
+        ],
+    ],
+],
+
+...
+
+```
+
 ## Usage
 
-1. replace `guanguans/yii-event` -> `vendorName/package-name`
-2. replace `Guanguans\\YiiEvent` -> `VendorName\\PackageName`
-3. replace `Guanguans\YiiEvent` -> `VendorName\PackageName`
-4. replace `ityaozm@gmail.com` -> `your email`
-5. execute `$ composer dumpautoload`
+``` php
+Yii::$app->event->dispatch(new ExampleEvent());
+// or
+event(new ExampleEvent());
+```
 
 ## Testing
 

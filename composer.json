@@ -39,7 +39,7 @@
             "Guanguans\\YiiEvent\\": "src"
         },
         "files": [
-
+            "src/heplers.php"
         ]
     },
     "autoload-dev": {
