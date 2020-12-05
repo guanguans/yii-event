@@ -14,7 +14,7 @@ if (! function_exists('event')) {
     /**
      * 调度事件.
      *
-     * @param null $listeners
+     * @param array|closure|object|string|null $listeners
      *
      * @throws \yii\base\InvalidConfigException
      */

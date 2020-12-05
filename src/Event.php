@@ -16,13 +16,22 @@ use yii\base\Component;
 
 class Event extends Component
 {
+    /**
+     * @var array
+     */
     protected $listen = [];
 
+    /**
+     * {@inheritdoc}
+     */
     public function init()
     {
         parent::init();
     }
 
+    /**
+     * @return array
+     */
     public function getListen()
     {
         return $this->listen;
@@ -36,7 +45,7 @@ class Event extends Component
     /**
      * 调度事件.
      *
-     * @param null $listeners
+     * @param array|closure|object|string|null $listeners
      *
      * @throws \yii\base\InvalidConfigException
      */
