@@ -14,5 +14,10 @@ use yii\base\Event;
 
 interface ListenerInterface
 {
+    /**
+     * Event handle.
+     *
+     * @return mixed
+     */
     public static function handle(Event $event);
 }
