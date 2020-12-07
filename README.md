@@ -1,6 +1,6 @@
 # yii-event
 
-> Easily use events in yii. - 在 yii 中轻松容易的使用事件。
+> Elegant usage events in Yii. - 在 Yii 中优雅的使用事件。
 
 <p align="center"><img src="./docs/usage.png"></p>
 
@@ -52,8 +52,6 @@ use yii\base\Event;
 class ExampleEvent extends Event
 {
     public $name = 'example';
-
-    public $array;
 }
 ```
 
@@ -70,7 +68,7 @@ class ExampleListener implements ListenerInterface
     public static function handle(Event $event)
     {
         // to do something.
-        var_export($event->array);
+        var_export($event->name);
     }
 }
 ```
@@ -78,17 +76,15 @@ class ExampleListener implements ListenerInterface
 ### Dispatch event
 
 ``` php
-Yii::$app->event->dispatch(new ExampleEvent(['array' => ['array']]));
+Yii::$app->event->dispatch(new ExampleEvent());
 // or
-event(new ExampleEvent(['array' => ['array']]));
+event(new ExampleEvent());
 ```
 
 ### Output result
 
 ``` php
-array (
-  0 => 'array',
-)
+'example'
 ```
 
 ## Testing
