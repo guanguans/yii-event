@@ -61,7 +61,7 @@ class Event extends Component
         ));
 
         foreach ($listeners as $listener) {
-            if ($listener instanceof Closure) {
+            if ($listener instanceof Closure || function_exists($listener)) {
                 $this->on($event->name, $listener);
                 continue;
             }

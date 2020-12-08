@@ -15,7 +15,7 @@ use yii\base\Event;
 
 class ExampleListener implements ListenerInterface
 {
-    public static function handle(Event $event)
+    public function handle(Event $event)
     {
         var_export($event->array);
     }

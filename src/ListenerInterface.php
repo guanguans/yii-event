@@ -19,5 +19,5 @@ interface ListenerInterface
      *
      * @return mixed
      */
-    public static function handle(Event $event);
+    public function handle(Event $event);
 }
