@@ -46,23 +46,26 @@ class Event extends Component
     /**
      * 调度事件.
      *
+     * @param mixed|null                       $data
      * @param array|closure|object|string|null $listeners
      *
      * @throws \Exception
      * @throws \yii\base\InvalidConfigException
      */
-    public function dispatch(\yii\base\Event $event, $listeners = null)
+    public function dispatch(\yii\base\Event $event, $data = null, $listeners = null)
     {
         $listeners = is_object($listeners) ? [$listeners] : (array) $listeners;
 
-        $listeners = array_unique(array_merge(
-            isset($this->listen[get_class($event)]) ? $this->listen[get_class($event)] : [],
-            $listeners
-        ));
+        $listeners = array_unique(
+            array_merge(
+                isset($this->listen[get_class($event)]) ? $this->listen[get_class($event)] : [],
+                $listeners
+            )
+        );
 
         foreach ($listeners as $listener) {
             if ($listener instanceof Closure || function_exists($listener)) {
-                $this->on($event->name, $listener);
+                $this->on($event->name, $listener, $data);
                 continue;
             }
 
@@ -71,7 +74,7 @@ class Event extends Component
                 throw new Exception(sprintf('The %s muse be implement %s.', get_class($listener), ListenerInterface::class));
             }
 
-            $this->on($event->name, [$listener, 'handle']);
+            $this->on($event->name, [$listener, 'handle'], $data);
         }
 
         $this->trigger($event->name, $event);

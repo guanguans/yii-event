@@ -14,13 +14,14 @@ if (! function_exists('event')) {
     /**
      * 调度事件.
      *
+     * @param mixed|null                       $data
      * @param array|closure|object|string|null $listeners
      *
      * @throws \Exception
      * @throws \yii\base\InvalidConfigException
      */
-    function event(Event $event, $listeners = null)
+    function event(Event $event, $data = null, $listeners = null)
     {
-        return Yii::$app->event->dispatch($event, $listeners);
+        return Yii::$app->event->dispatch($event, $data, $listeners);
     }
 }

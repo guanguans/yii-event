@@ -35,7 +35,7 @@ class EventTest extends TestCase
         $this->expectException(\Exception::class);
         $this->expectExceptionMessage(sprintf('The %s muse be implement %s.', self::class, ListenerInterface::class));
 
-        Yii::$app->event->dispatch(new ExampleEvent(), self::class);
+        Yii::$app->event->dispatch(new ExampleEvent(), null, self::class);
     }
 
     public function testDispatch()
@@ -43,7 +43,7 @@ class EventTest extends TestCase
         $mockArr = ['array'];
 
         $this->assertNull(Yii::$app->event->dispatch(new ExampleEvent(['data' => $mockArr])));
-        $this->assertNull(Yii::$app->event->dispatch(new ExampleEvent(['data' => $mockArr]), function () {
+        $this->assertNull(Yii::$app->event->dispatch(new ExampleEvent(['data' => $mockArr]), null, function () {
             return 'To do something.';
         }));
     }
