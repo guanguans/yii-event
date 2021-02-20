@@ -28,9 +28,9 @@ $ composer require guanguans/yii-event -vvv
 'components' => [
     ...
     'event' => [
-        'class' => \Guanguans\YiiEvent\Event::className(),
+        'class' => \Guanguans\YiiEvent\Event::class,
         'listen' => [
-            \app\events\ExampleEvent::className() => [
+            \app\events\ExampleEvent::class => [
                 \app\listeners\ExampleListener::class,
             ],
         ],
@@ -65,10 +65,11 @@ use yii\base\Event;
 
 class ExampleListener implements ListenerInterface
 {
-    public static function handle(Event $event)
+    public function handle(Event $event)
     {
         // to do something.
         var_export($event->name);
+        // var_export($event->data);
     }
 }
 ```
@@ -77,8 +78,10 @@ class ExampleListener implements ListenerInterface
 
 ``` php
 Yii::$app->event->dispatch(new ExampleEvent());
+// Yii::$app->event->dispatch(new ExampleEvent(), $data);
 // or
 event(new ExampleEvent());
+// event(new ExampleEvent(), $data);
 ```
 
 ### Output result
