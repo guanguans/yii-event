@@ -18,7 +18,7 @@
 ## Installation
 
 ``` bash
-$ composer require guanguans/yii-event -vvv
+$ composer require guanguans/yii-event --prefer-dist -vvv
 ```
 
 ## Configuration
