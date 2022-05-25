@@ -2,6 +2,10 @@
 
 All notable changes to `guanguans/yii-event` will be documented in this file
 
+## v1.0.6 - 2022-05-25
+
+**Full Changelog**: https://github.com/guanguans/yii-event/compare/v1.0.5...v1.0.6
+
 ## v1.0.5 - 2022-05-25
 
 **Full Changelog**: https://github.com/guanguans/yii-event/compare/v1.0.4...v1.0.5
