@@ -18,21 +18,24 @@ $finder = Symfony\Component\Finder\Finder::create()
     ->ignoreDotFiles(true)
     ->ignoreVCS(true);
 
-return PhpCsFixer\Config::create()
+return (new PhpCsFixer\Config())
     ->setRules([
-        // '@PSR2' => true,
+        // '@PSR12' => true,
         '@Symfony' => true,
-        'header_comment' => ['header' => $header],
+        'header_comment' => [
+            'header' => $header,
+            'comment_type' => 'PHPDoc'
+        ],
         'array_syntax' => ['syntax' => 'short'],
-        'ordered_imports' => ['sortAlgorithm' => 'alpha'],
+        'ordered_imports' => ['sort_algorithm' => 'alpha'],
         'no_unused_imports' => true,
         'not_operator_with_successor_space' => true,
-        'trailing_comma_in_multiline_array' => true,
         'no_useless_else' => true,
         'no_useless_return' => true,
         'single_quote' => true,
         'class_attributes_separation' => true,
         'standardize_not_equals' => true,
+        // 'trailing_comma_in_multiline' => true,
         // 'php_unit_construct' => true,
         // 'php_unit_strict' => true,
         // 'declare_strict_types' => true,

@@ -1,17 +1,14 @@
 {
     "name": "guanguans/yii-event",
     "description": "Elegant usage events in Yii. - 在 Yii 中优雅的使用事件。",
+    "license": "MIT",
+    "type": "library",
     "keywords": [
         "yii",
         "yii2",
         "event",
         "yii-event"
     ],
-    "homepage": "https://github.com/guanguans/yii-event",
-    "support": {
-        "issues": "https://github.com/guanguans/yii-event/issues",
-        "source": "https://github.com/guanguans/yii-event"
-    },
     "authors": [
         {
             "name": "guanguans",
@@ -20,20 +17,29 @@
             "role": "developer"
         }
     ],
-    "type": "library",
-    "license": "MIT",
-    "minimum-stability": "dev",
-    "prefer-stable": true,
+    "homepage": "https://github.com/guanguans/yii-event",
+    "support": {
+        "issues": "https://github.com/guanguans/yii-event/issues",
+        "source": "https://github.com/guanguans/yii-event"
+    },
+    "funding": [
+        {
+            "type": "wechat",
+            "url": "https://www.guanguans.cn/images/wechat.jpeg"
+        }
+    ],
     "require": {
         "yiisoft/yii2": "^2.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.16",
-        "vimeo/psalm": "^3.11",
-        "mockery/mockery": "^1.2",
-        "brainmaestro/composer-git-hooks": "^2.7",
-        "phpunit/phpunit": "^7 || ^8"
+        "brainmaestro/composer-git-hooks": "^2.8",
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "mockery/mockery": "^1.4",
+        "phpunit/phpunit": "^7.0 || ^8.0 || ^9.0",
+        "vimeo/psalm": "^4.0"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "Guanguans\\YiiEvent\\": "src"
@@ -48,46 +54,37 @@
         }
     },
     "config": {
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true
+        },
         "sort-packages": true
     },
     "extra": {
         "hooks": {
             "pre-commit": [
                 "composer test",
-                "composer check-style"
+                "composer style-lint"
             ],
             "pre-push": [
                 "composer test",
-                "composer check-style"
+                "composer style-lint"
             ]
         }
     },
-    "funding": [
-        {
-            "type": "wechat",
-            "url": "https://www.guanguans.cn/images/wechat.jpeg"
-        }
-    ],
     "scripts": {
-        "post-update-cmd": [
-            "cghooks update"
-        ],
-        "post-merge": "composer install",
         "post-install-cmd": [
             "cghooks add --ignore-lock",
             "cghooks update"
         ],
+        "post-update-cmd": [
+            "cghooks update"
+        ],
         "cghooks": "./vendor/bin/cghooks",
-        "check-style": "php-cs-fixer fix --using-cache=no --diff --config=.php_cs.dist --dry-run --ansi",
-        "fix-style": "php-cs-fixer fix --using-cache=no --config=.php_cs.dist --ansi",
+        "post-merge": "composer install",
         "psalm": "./vendor/bin/psalm",
+        "style-fix": "php-cs-fixer fix --using-cache=no --config=.php-cs-fixer.php --ansi",
+        "style-lint": "php-cs-fixer fix --using-cache=no --diff --config=.php-cs-fixer.php --dry-run --ansi",
         "test": "./vendor/bin/phpunit --coverage-text --colors=always --verbose",
         "test-coverage": "./vendor/bin/phpunit --coverage-html=coverage/ --coverage-clover=clover.xml --color=always --verbose"
-    },
-    "scripts-descriptions": {
-        "check-style": "Run style checks (only dry run - no fixing!).",
-        "fix-style": "Run style checks and fix violations.",
-        "test": "Run all tests.",
-        "test-coverage": "Run all tests with coverage."
     }
 }
