@@ -2,18 +2,22 @@
 
 All notable changes to `guanguans/yii-event` will be documented in this file
 
-## 1.0.0 - 2020-12-05
+## v1.0.4 - 2021-04-24
 
-* Initial release.
+* Refactor dispatch method.
 
-## 1.0.1 - 2020-12-07
+## v1.0.3 - 2020-12-09
 
-* Fixed event dispatch.
+* Added event data.
 
-## 1.0.2 - 2020-12-08
+## v1.0.2 - 2020-12-08
 
 * Added event binding function.
 
-## 1.0.3 - 2020-12-09
+## v1.0.1 - 2020-12-07
 
-* Added event data.
+* Fixed event dispatch.
+
+## v1.0.0 - 2020-12-05
+
+* Initial release.
