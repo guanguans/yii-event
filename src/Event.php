@@ -69,11 +69,9 @@ class Event extends Component
      */
     public function getListeners(\yii\base\Event $event, $listeners = null)
     {
-        $listeners = is_object($listeners) ? [$listeners] : (array) $listeners;
-
         return array_unique(array_merge(
             isset($this->listen[get_class($event)]) ? $this->listen[get_class($event)] : [],
-            $listeners
+            is_object($listeners) ? [$listeners] : (array) $listeners
         ));
     }
 
