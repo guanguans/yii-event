@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * This file is part of the guanguans/yii-event.
  *
  * (c) guanguans <ityaozm@gmail.com>
