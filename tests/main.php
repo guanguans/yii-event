@@ -17,8 +17,8 @@ $config = [
         'event' => [
             'class' => Event::class,
             'listen' => [
-                \Guanguans\YiiEvent\Tests\Stub\ExampleEvent::class => [
-                    \Guanguans\YiiEvent\Tests\Stub\ExampleListener::class,
+                \Guanguans\YiiEvent\Tests\Stubs\ExampleEvent::class => [
+                    \Guanguans\YiiEvent\Tests\Stubs\ExampleListener::class,
                 ],
             ],
         ],

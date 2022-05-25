@@ -10,8 +10,9 @@
 
 namespace Guanguans\YiiEvent\Tests;
 
+use Exception;
 use Guanguans\YiiEvent\ListenerInterface;
-use Guanguans\YiiEvent\Tests\Stub\ExampleEvent;
+use Guanguans\YiiEvent\Tests\Stubs\ExampleEvent;
 use Yii;
 use yii\web\Application;
 
@@ -32,7 +33,7 @@ class EventTest extends TestCase
 
     public function testDispatchException()
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Exception::class);
         $this->expectExceptionMessage(sprintf('The %s muse be implement %s.', self::class, ListenerInterface::class));
 
         Yii::$app->event->dispatch(new ExampleEvent(), null, self::class);
@@ -57,8 +58,8 @@ class EventTest extends TestCase
                 'event' => [
                     'class' => \Guanguans\YiiEvent\Event::class,
                     'listen' => [
-                        \Guanguans\YiiEvent\Tests\Stub\ExampleEvent::class => [
-                            \Guanguans\YiiEvent\Tests\Stub\ExampleListener::class,
+                        \Guanguans\YiiEvent\Tests\Stubs\ExampleEvent::class => [
+                            \Guanguans\YiiEvent\Tests\Stubs\ExampleListener::class,
                         ],
                     ],
                 ],

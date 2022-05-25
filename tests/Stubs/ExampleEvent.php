@@ -8,7 +8,7 @@
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace Guanguans\YiiEvent\Tests\Stub;
+namespace Guanguans\YiiEvent\Tests\Stubs;
 
 use yii\base\Event;
 

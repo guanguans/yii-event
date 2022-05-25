@@ -10,7 +10,6 @@
 
 namespace Guanguans\YiiEvent;
 
-use Closure;
 use Exception;
 use Yii;
 use yii\base\Component;
@@ -46,8 +45,8 @@ class Event extends Component
     /**
      * 调度事件.
      *
-     * @param null                             $data
-     * @param array|closure|object|string|null $listeners
+     * @param mixed               $data
+     * @param callable|callable[] $listeners
      *
      * @throws \yii\base\InvalidConfigException
      */
@@ -63,7 +62,7 @@ class Event extends Component
     /**
      * 获取事件全部监听.
      *
-     * @param array|closure|object|string|null $listeners
+     * @param callable|callable[] $listeners
      *
      * @return array
      */
@@ -71,25 +70,24 @@ class Event extends Component
     {
         $listeners = is_object($listeners) ? [$listeners] : (array) $listeners;
 
-        return array_unique(
-            array_merge(
-                isset($this->listen[get_class($event)]) ? $this->listen[get_class($event)] : [],
-                $listeners
-            )
-        );
+        return array_unique(array_merge(
+            isset($this->listen[get_class($event)]) ? $this->listen[get_class($event)] : [],
+            $listeners
+        ));
     }
 
     /**
      * 批量添加事件监听.
      *
-     * @param null $data
+     * @param mixed      $data
+     * @param callable[] $listeners
      *
      * @throws \yii\base\InvalidConfigException
      */
     public function onListeners(\yii\base\Event $event, $data = null, array $listeners)
     {
         foreach ($listeners as $listener) {
-            if ($listener instanceof Closure || function_exists($listener)) {
+            if (is_callable($listener)) {
                 $this->on($event->name, $listener, $data);
                 continue;
             }
