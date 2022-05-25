@@ -15,9 +15,9 @@ $config = [
     'basePath' => dirname(__DIR__),
     'components' => [
         'event' => [
-            'class' => Event::className(),
+            'class' => Event::class,
             'listen' => [
-                \Guanguans\YiiEvent\Tests\Stub\ExampleEvent::className() => [
+                \Guanguans\YiiEvent\Tests\Stub\ExampleEvent::class => [
                     \Guanguans\YiiEvent\Tests\Stub\ExampleListener::class,
                 ],
             ],

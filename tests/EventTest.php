@@ -55,9 +55,9 @@ class EventTest extends TestCase
             'basePath' => dirname(__DIR__),
             'components' => [
                 'event' => [
-                    'class' => \Guanguans\YiiEvent\Event::className(),
+                    'class' => \Guanguans\YiiEvent\Event::class,
                     'listen' => [
-                        \Guanguans\YiiEvent\Tests\Stub\ExampleEvent::className() => [
+                        \Guanguans\YiiEvent\Tests\Stub\ExampleEvent::class => [
                             \Guanguans\YiiEvent\Tests\Stub\ExampleListener::class,
                         ],
                     ],
