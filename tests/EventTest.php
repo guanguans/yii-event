@@ -14,7 +14,6 @@ use Guanguans\YiiEvent\ListenerInterface;
 use Guanguans\YiiEvent\Tests\Stubs\ExampleEvent;
 use InvalidArgumentException;
 use Yii;
-use yii\base\InvalidConfigException;
 
 class EventTest extends TestCase
 {
@@ -34,12 +33,6 @@ class EventTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(sprintf('The %s muse be implement %s.', self::class, ListenerInterface::class));
         Yii::$app->event->dispatch(new ExampleEvent(), null, self::class);
-    }
-
-    public function testDispatchInvalidConfigException()
-    {
-        $this->expectException(InvalidConfigException::class);
-        Yii::$app->event->dispatch(new ExampleEvent(), null, \yii\base\Application::class);
     }
 
     public function testDispatch()
