@@ -12,3 +12,4 @@ vendor/
 tests.php
 .DS_Store
 cghooks.lock
+/.php-cs-fixer.cache
