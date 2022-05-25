@@ -22,6 +22,6 @@ if (! function_exists('event')) {
      */
     function event(Event $event, $data = null, $listeners = null)
     {
-        return Yii::$app->event->dispatch($event, $data, $listeners);
+        Yii::$app->event->dispatch($event, $data, $listeners);
     }
 }
