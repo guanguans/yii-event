@@ -16,5 +16,5 @@ class ExampleEvent extends Event
 {
     public $name = 'example';
 
-    public $array;
+    public $foo;
 }

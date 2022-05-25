@@ -17,6 +17,6 @@ class ExampleListener implements ListenerInterface
 {
     public function handle(Event $event)
     {
-        var_export($event->array);
+        var_export($event->foo);
     }
 }

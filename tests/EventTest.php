@@ -10,11 +10,11 @@
 
 namespace Guanguans\YiiEvent\Tests;
 
-use Exception;
 use Guanguans\YiiEvent\ListenerInterface;
 use Guanguans\YiiEvent\Tests\Stubs\ExampleEvent;
+use InvalidArgumentException;
 use Yii;
-use yii\web\Application;
+use yii\base\InvalidConfigException;
 
 class EventTest extends TestCase
 {
@@ -25,54 +25,31 @@ class EventTest extends TestCase
 
     public function testSetListen()
     {
-        $mockArr = ['array'];
-        Yii::$app->event->setListen($mockArr);
-
+        Yii::$app->event->setListen($mockArr = ['array']);
         $this->assertEquals($mockArr, Yii::$app->event->getListen());
     }
 
-    public function testDispatchException()
+    public function testDispatchInvalidArgumentException()
     {
-        $this->expectException(Exception::class);
+        $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(sprintf('The %s muse be implement %s.', self::class, ListenerInterface::class));
-
         Yii::$app->event->dispatch(new ExampleEvent(), null, self::class);
+    }
+
+    public function testDispatchInvalidConfigException()
+    {
+        $this->expectException(InvalidConfigException::class);
+        Yii::$app->event->dispatch(new ExampleEvent(), null, \yii\base\Application::class);
     }
 
     public function testDispatch()
     {
-        $mockArr = ['array'];
+        $this->expectOutputString(var_export($foo = 'foo', true));
+        $this->assertNull(Yii::$app->event->dispatch(new ExampleEvent(['foo' => $foo])));
 
-        $this->assertNull(Yii::$app->event->dispatch(new ExampleEvent(['data' => $mockArr])));
-        $this->assertNull(Yii::$app->event->dispatch(new ExampleEvent(['data' => $mockArr]), null, function () {
-            return 'To do something.';
-        }));
-    }
-
-    public function testDispatchOutputString()
-    {
-        $config = [
-            'id' => 'yii2-event-app',
-            'basePath' => dirname(__DIR__),
-            'components' => [
-                'event' => [
-                    'class' => \Guanguans\YiiEvent\Event::class,
-                    'listen' => [
-                        \Guanguans\YiiEvent\Tests\Stubs\ExampleEvent::class => [
-                            \Guanguans\YiiEvent\Tests\Stubs\ExampleListener::class,
-                        ],
-                    ],
-                ],
-            ],
-        ];
-
-        new Application($config);
-
-        $mockArr = ['mock_arr'];
-
-        $this->expectOutputString(var_export($mockArr, true));
-
-        Yii::$app->event->dispatch(new ExampleEvent(['array' => $mockArr]));
-        // event(new ExampleEvent(['array' => $mockArr]));
+        $this->expectOutputString(var_export($bar = 'bar', true));
+        Yii::$app->event->dispatch(new ExampleEvent(), $bar, function ($event) {
+            var_export($event->data);
+        });
     }
 }
