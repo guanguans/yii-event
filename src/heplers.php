@@ -14,11 +14,11 @@ if (! function_exists('event')) {
     /**
      * 调度事件.
      *
-     * @param mixed|null                       $data
-     * @param array|closure|object|string|null $listeners
+     * @param mixed               $data
+     * @param callable|callable[] $listeners
      *
-     * @throws \Exception
      * @throws \yii\base\InvalidConfigException
+     * @throws \InvalidArgumentException
      */
     function event(Event $event, $data = null, $listeners = null)
     {

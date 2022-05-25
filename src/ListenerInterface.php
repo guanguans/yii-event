@@ -15,7 +15,7 @@ use yii\base\Event;
 interface ListenerInterface
 {
     /**
-     * Event handle.
+     * Handle event.
      *
      * @return mixed
      */

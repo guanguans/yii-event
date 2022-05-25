@@ -10,7 +10,7 @@
 
 namespace Guanguans\YiiEvent;
 
-use Exception;
+use InvalidArgumentException;
 use Yii;
 use yii\base\Component;
 
@@ -49,6 +49,7 @@ class Event extends Component
      * @param callable|callable[] $listeners
      *
      * @throws \yii\base\InvalidConfigException
+     * @throws \InvalidArgumentException
      */
     public function dispatch(\yii\base\Event $event, $data = null, $listeners = null)
     {
@@ -83,6 +84,7 @@ class Event extends Component
      * @param callable[] $listeners
      *
      * @throws \yii\base\InvalidConfigException
+     * @throws \InvalidArgumentException
      */
     public function onListeners(\yii\base\Event $event, $data = null, array $listeners)
     {
@@ -94,7 +96,7 @@ class Event extends Component
 
             $listener = Yii::createObject($listener);
             if (! $listener instanceof ListenerInterface) {
-                throw new Exception(sprintf('The %s muse be implement %s.', get_class($listener), ListenerInterface::class));
+                throw new InvalidArgumentException(sprintf('The %s muse be implement %s.', get_class($listener), ListenerInterface::class));
             }
 
             $this->on($event->name, [$listener, 'handle'], $data);
