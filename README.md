@@ -17,13 +17,13 @@
 
 ## Installation
 
-``` bash
+```bash
 $ composer require guanguans/yii-event --prefer-dist -vvv
 ```
 
 ## Configuration
 
-``` php
+```php
 ...
 'components' => [
     ...
@@ -44,7 +44,7 @@ $ composer require guanguans/yii-event --prefer-dist -vvv
 
 ### Create `app\events\ExampleEvent.php`
 
-``` php
+```php
 namespace app\events;
 
 use yii\base\Event;
@@ -57,7 +57,7 @@ class ExampleEvent extends Event
 
 ### Create `app\listeners\ExampleListener.php`
 
-``` php
+```php
 namespace app\listeners;
 
 use Guanguans\YiiEvent\ListenerInterface;
@@ -76,7 +76,7 @@ class ExampleListener implements ListenerInterface
 
 ### Dispatch event
 
-``` php
+```php
 Yii::$app->event->dispatch(new ExampleEvent());
 // Yii::$app->event->dispatch(new ExampleEvent(), $data);
 // or
@@ -86,7 +86,7 @@ event(new ExampleEvent());
 
 ### Output result
 
-``` php
+```php
 'example'
 ```
 
